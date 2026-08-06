@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>אוהב גר - הקדמה | שד״ל</title>
+<style>
+  @page { size: A4; margin: 2cm; }
+  body { font-family: "David", "Times New Roman", serif; font-size: 16px; line-height: 1.8; direction: rtl; max-width: 800px; margin: 0 auto; padding: 2em; color: #1a1a1a; }
+  h1, h2 { text-align: center; }
+  h1 { font-size: 2em; margin-bottom: 0.2em; }
+  h2 { font-size: 1.3em; font-weight: normal; color: #444; margin-bottom: 2em; }
+  p { text-align: justify; text-indent: 1.5em; margin: 0.8em 0; }
+  hr { border: none; border-top: 1px solid #ccc; margin: 1.5em 0; }
+  .source { text-align: center; font-size: 0.85em; color: #888; margin-top: 3em; }
+  #loading { text-align: center; padding: 3em; color: #888; }
+  @media print { body { font-size: 13px; padding: 0; } #loading { display: none; } }
+</style>
+</head>
+<body>
+<h1>אוהב גר</h1>
+<h1>הקדמה</h1>
+<h2>שמואל דוד לוצאטו (שד״ל)</h2>
+<hr>
+<div id="content"><p id="loading">טוען...</p></div>
+<hr>
+<p class="source">Source: <a href="https://www.sefaria.org/Ohev_Ger">Sefaria.org</a> — Ohev Ger, Introduction</p>
+<script>
+fetch('https://www.sefaria.org/api/texts/Ohev_Ger,_Introduction')
+  .then(r => r.json())
+  .then(data => {
+    const el = document.getElementById('content');
+    el.innerHTML = data.he
+      .filter(p => p.trim())
+      .map(p => '<p>' + p + '</p>')
+      .join('\n');
+  })
+  .catch(e => {
+    document.getElementById('loading').textContent = 'Error loading text: ' + e.message;
+  });
+</script>
+</body>
+</html>
